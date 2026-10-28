@@ -1,0 +1,194 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: $c-surface;
+  box-shadow: 0 1px 0 $c-border;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 10px 24px;
+
+    @include tablet {
+      gap: 16px;
+      padding: 10px 16px;
+    }
+
+    // На телефоне меню переносится на вторую строку
+    @include phone {
+      flex-wrap: wrap;
+      row-gap: 6px;
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  &__name {
+    @include tablet {
+      display: none;
+    }
+  }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $c-primary;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+
+  span {
+    color: $c-text;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 4px;
+
+  &__link {
+    padding: 8px 14px;
+    border-radius: $radius-sm;
+    color: $c-muted;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      background: $c-bg;
+      color: $c-text;
+    }
+
+    &--active {
+      background: $c-primary-soft;
+      color: $c-primary;
+    }
+
+    @include tablet {
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+  }
+
+  @include phone {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+
+  @include tablet {
+    padding: 16px;
+  }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  &__sub {
+    margin-top: 4px;
+    color: $c-muted;
+  }
+}
+
+.goal {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-left: 4px solid $c-primary;
+  background: $c-primary-soft;
+  border-radius: 0 $radius-sm $radius-sm 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-bottom: 16px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    min-width: 0;
+
+    // Выпадающий список не должен расширять страницу на узких экранах
+    > .input {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    @include phone {
+      width: 100%;
+    }
+  }
+
+  &__label {
+    color: $c-muted;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__stat {
+    margin-left: auto;
+    color: $c-muted;
+    font-size: 14px;
+
+    b {
+      color: $c-text;
+    }
+
+    @include tablet {
+      margin-left: 0;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hint-line {
+  margin-top: 12px;
+  color: $c-muted;
+  font-size: 13px;
+}
+
+.reset {
+  margin-top: 8px;
+  text-align: right;
+}

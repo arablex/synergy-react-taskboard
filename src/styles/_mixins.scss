@@ -1,0 +1,18 @@
+@use 'variables' as *;
+
+@mixin tablet {
+  @media (max-width: #{$bp-tablet}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$bp-phone}) {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  outline: 2px solid $c-primary;
+  outline-offset: 2px;
+}

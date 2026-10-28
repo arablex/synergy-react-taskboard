@@ -1,0 +1,7 @@
+// Точка входа стилей (SCSS): переменные, миксины и partial-файлы по областям
+@use 'base';
+@use 'layout';
+@use 'forms';
+@use 'ui';
+@use 'board';
+@use 'dashboard';

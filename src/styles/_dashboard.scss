@@ -1,0 +1,288 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.panel {
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border-radius: $radius;
+  background: $c-surface;
+  box-shadow: $shadow;
+  min-width: 0;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 16px;
+
+    &--spaced {
+      margin-top: 22px;
+    }
+  }
+
+  &__count {
+    padding: 1px 9px;
+    border-radius: 999px;
+    background: $c-border;
+    font-size: 12px;
+  }
+
+  @include phone {
+    padding: 14px;
+  }
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-bottom: 0;
+
+  > .panel {
+    margin-bottom: 16px;
+  }
+
+  @include tablet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+
+  @include tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include phone {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: $radius;
+  background: $c-surface;
+  box-shadow: $shadow;
+
+  &__label {
+    color: $c-muted;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    small {
+      font-size: 16px;
+      font-weight: 500;
+      color: $c-muted;
+    }
+  }
+
+  &__note {
+    color: $c-muted;
+    font-size: 13px;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+.progress {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: $c-border;
+
+  span {
+    display: block;
+    height: 100%;
+    background: $c-done;
+    border-radius: inherit;
+  }
+}
+
+// ---------- Графики ----------
+.chart {
+  &__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__grid {
+    stroke: $c-border;
+    stroke-width: 1;
+  }
+
+  &__tick {
+    fill: $c-muted;
+    font-size: 11px;
+  }
+
+  &__line {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    &--ideal {
+      stroke: #a5adba;
+      stroke-dasharray: 6 5;
+    }
+
+    &--actual {
+      stroke: $c-primary;
+    }
+  }
+
+  &__dot {
+    fill: $c-surface;
+    stroke: $c-primary;
+    stroke-width: 2;
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 8px;
+  color: $c-muted;
+  font-size: 13px;
+
+  &--col {
+    flex-direction: column;
+    margin-top: 0;
+    gap: 8px;
+  }
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    b {
+      margin-left: auto;
+      padding-left: 12px;
+      color: $c-text;
+    }
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  &__line {
+    width: 22px;
+    height: 0;
+    border-top: 3px solid $c-primary;
+
+    &--ideal {
+      border-top: 3px dashed #a5adba;
+    }
+  }
+}
+
+.donut {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  &__svg {
+    flex: none;
+    width: 150px;
+    height: 150px;
+  }
+
+  &__track {
+    stroke: $c-border;
+  }
+
+  &__num {
+    fill: $c-text;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  &__cap {
+    fill: $c-muted;
+    font-size: 11px;
+  }
+
+  .legend {
+    flex: 1;
+    min-width: 0;
+  }
+
+  @include phone {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .legend {
+      width: 100%;
+    }
+  }
+}
+
+.workload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 130px 1fr 52px;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+
+    @include phone {
+      grid-template-columns: 100px 1fr 48px;
+    }
+  }
+
+  &__name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__bar {
+    display: flex;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #f1f2f4;
+  }
+
+  &__done {
+    background: $c-done;
+  }
+
+  &__left {
+    background: $c-progress;
+  }
+
+  &__val {
+    text-align: right;
+    font-weight: 700;
+  }
+}
